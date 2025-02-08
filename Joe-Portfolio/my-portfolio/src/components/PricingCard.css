@@ -1,0 +1,65 @@
+.pricing {
+    width:100%;
+    padding:6rem 1rem;
+    background-color: #141414;
+    /* background-image: url("https://images.unsplash.com/photo-1505238680356-667803448bb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDYwfHx8ZW58MHx8fHx8");
+    background-size:cover;*/
+}
+
+
+.card-container{
+    max-width:1140px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap:30px;
+}
+
+.card{
+    border:1px solid #ddd;
+    color:#eee;
+    text-align:center;
+    padding:1rem;
+    
+}
+
+.card:hover {
+    background-color: #141414;
+}
+
+.card h3 {
+    font-size:1.4rem;
+    padding:1rem;
+}
+
+.card p {
+    padding:10px 0;
+}
+
+.bar {
+    border-bottom: 2px solid #ddd;
+    width:20%;
+    margin:1.5rem auto;
+    display:block;
+}
+
+.btc {
+    font-size:3.7rem;
+    font-weight: 600;
+    padding: 1rem 0;
+}
+
+.card .btn {
+    display:block;
+    width:80%;
+    margin:2rem auto;
+}
+
+
+@media screen and (max-width:640px) {
+    .card-container{
+      max-width: 90%;
+      margin:auto;
+      grid-template-columns:1fr;
+    }
+}

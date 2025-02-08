@@ -1,0 +1,69 @@
+.intro-container {
+  width: 100%;
+  height: 300%;
+  position: relative;
+
+}
+
+.intro-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+
+ 
+}
+.intro-container::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+.display-img {
+    height: 100%;
+    width: 100%;
+
+}
+
+.display-img .content{
+    position:absolute;
+    transform :translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    text-align:center;
+}
+
+.display-img  .content h1{
+    font-size:4rem;
+    padding:0.6rem 0 1.5rem;
+    color: antiquewhite;
+
+}
+
+.display-img .content p{
+    font-size:1.5rem;
+    font-weight:300;
+    text-transform: uppercase;
+    color: antiquewhite;
+}
+
+
+
+.content .btn {
+    margin: 1rem 0.3rem;
+}
+
+@media screen and (max-width:640px){
+    .display-img .content h1{
+        font-size:2.5rem;
+    }
+    .display-img .content p{
+        font-size:1rem;
+    }
+}
