@@ -33,6 +33,10 @@ const SignUp = () => {
         body: JSON.stringify(form),
       });
 
+      if (res.ok) {
+        setPending(false)
+      }
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
 
