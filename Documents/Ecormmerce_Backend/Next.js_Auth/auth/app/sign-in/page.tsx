@@ -4,13 +4,42 @@ import { Card, CardHeader, CardDescription, CardContent, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@radix-ui/react-separator';
-
+import {useRouter} from 'next/navigation'
+import { toast } from 'sonner';
 //react icons
 import { FaGithub, FaGoogleDrive} from "react-icons/fa"
 import {FaGoogle} from "react-icons/fa"
 import Link from 'next/link';
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+
 
 const SignIn = () => {
+  const [email,setEmail] = useState<string>("")
+    const [password,setPassword] = useState<string>("")
+    const [pending,setPending] = useState(false)
+     const router = useRouter()
+
+    const handleSubmit = async (e:React.FormEvent) => {
+e.preventDefault()
+setPending(true)
+const res = await signIn("credentials", {
+  redirect: false,
+  email,
+  password
+});
+if (res?.ok) {
+  router.push('/')
+  toast.success("Login successfull")
+
+}else if(res?.status === 400){
+ 
+}
+ else {
+  console.log('Sign-in successful');
+}
+    }
+  
   return (
     <div className="h-full flex items-center justify-center bg-[#1b0918]">
       <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
@@ -21,23 +50,32 @@ const SignIn = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className='px-2 sm:px-6'>
-          <form action="" className='space-y-3' >
+          <form onSubmit={handleSubmit} className='space-y-3' >
                 
                  
                 
                   <Input
                  type="email"
-                 disabled={false}
+                 disabled={pending}
                  placeholder='Email'
-                 value={""}
-                  onChange={() => {}}
+                 value={email}
+                  onChange={(e) =>  setEmail(e.target.value)}
+                  required
+                 
+                 />
+                 <Input
+                 type="password"
+                 disabled={pending}
+                 placeholder='password'
+                 value={email}
+                  onChange={(e) =>  setPassword(e.target.value)}
                   required
                  
                  />
                  
                  <Button className='w-full'
                  size="lg"
-                 disabled={false}
+                 disabled={pending}
                   >
                     continue
                           

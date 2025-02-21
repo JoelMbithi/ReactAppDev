@@ -6,9 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@radix-ui/react-separator';
 
 // React Icons
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGithub, } from "react-icons/fa";
+import {FcGoogle } from 'react-icons/fc'
 import Link from 'next/link';
 import { useState } from 'react';
+import { toast } from 'sonner';
+import {  useRouter } from "next/navigation"
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -20,6 +23,9 @@ const SignUp = () => {
 
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(""); // To show errors
+
+
+   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,12 +39,18 @@ const SignUp = () => {
         body: JSON.stringify(form),
       });
 
-      if (res.ok) {
-        setPending(false)
-      }
-
+      // After sig iup is correct navigate to login page
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      if (res.ok) {
+        setPending(false);
+
+       
+        toast.success(data.message);
+        router.push("/sign-in")
+
+      } else {
+        throw new Error(data.message);
+      }
 
       console.log("User Created Successfully");
     } catch (err: any) {
@@ -107,7 +119,7 @@ const SignUp = () => {
               size="lg"
               className='bg-white hover:bg-gray-200'
             >
-              <FaGoogle className="size-6" color="#DB4437" />
+              <FcGoogle className="size-6" color="#DB4437" />
             </Button>
             <Button
               disabled={false}
